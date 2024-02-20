@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Pet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ink+Free&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #B23A48;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 428px;
+            height: 928px;
+            margin: 0 auto;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .back-button,
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .back-button {
+            left: 20px;
+        }
+
+        .menu-icon {
+            right: 20px;
+        }
+
+        .login-text {
+            position: absolute;
+            top: 10px;
+            left: 120px;
+            font-family: "Ink Free", sans-serif;
+            font-size: 48px;
+            color: black;
+            text-transform: uppercase;
+        }
+
+        .upload-container {
+            position: relative;
+            margin-top: 120px;
+        }
+
+        .upload-btn {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #FCB9B2;
+            color: #461220;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            overflow: hidden; /* Oculta cualquier parte de la imagen que se extienda más allá del círculo */
+            position: relative;
+        }
+
+        .upload-btn img {
+            width: 100%; /* Asegura que la imagen ocupe todo el espacio del círculo */
+            height: 100%; /* Ajusta la altura de la imagen para que coincida con el círculo */
+            object-fit: cover; /* Hace que la imagen se ajuste automáticamente al tamaño del círculo */
+            border-radius: 50%; /* Hace que la imagen tenga bordes redondeados para que coincida con el círculo */
+        }
+
+        .upload-btn .cloud-icon {
+            position: absolute;
+            font-size: 48px;
+        }
+
+        .upload-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .input-container {
+            margin-top: 20px; /* Reducción del espacio entre los cuadros de entrada */
+        }
+
+        .new-btn,
+        .new-btn-second,
+        .new-btn-third,
+        .new-btn-fourth,
+        .login-btn {
+            width: 270px;
+            height: 55px;
+            border-radius: 50px;
+            background-color: #FCB9B2;
+            color: #461220;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .login-btn {
+            background-color: #461220;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-button" onclick="window.history.back();">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="menu-icon" onclick="redirectToDashboard()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <h2 class="login-text">Add Pet</h2>
+        <div class="upload-container">
+            <label for="file-upload" class="upload-btn">
+                <img id="image-preview" class="hidden" src="#" alt="Preview"> <!-- Aquí la imagen previamente seleccionada se mostrará -->
+                <i class="fas fa-cloud-upload-alt cloud-icon"></i> <!-- Icono de la nube -->
+            </label>
+            <input id="file-upload" class="upload-input" type="file" accept="image/*" onchange="previewImage(event)">
+        </div>
+        <div class="input-container">
+            <input type="text" class="new-btn" placeholder="Name">
+        </div>
+        <div class="input-container">
+            <input type="text" class="new-btn-second" placeholder="Type">
+        </div>
+        <div class="input-container">
+            <input type="text" class="new-btn-third" placeholder="Breed">
+        </div>
+        <div class="input-container">
+            <input type="text" class="new-btn-fourth" placeholder="Age">
+        </div>
+        <button class="login-btn">Add Pet</button>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                const imgElement = document.getElementById('image-preview');
+                imgElement.src = reader.result;
+                imgElement.classList.remove('hidden');
+                document.querySelector('.cloud-icon').classList.add('hidden');
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        function redirectToDashboard() {
+            window.location.href = "../dashboard.html";
+        }
+    </script>
+</body>
+</html>
