@@ -37,6 +37,13 @@
                     $_SESSION['error'] = "Data Incorrect Please try again";
                     return false;
                 }
+
+                
+           
+
+            } else { 
+                $_SESSION['error'] = "Email or password incorrect, please try again";
+                return false;
             }
             
         } catch (PDOException $e) {

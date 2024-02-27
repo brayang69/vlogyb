@@ -2,6 +2,9 @@
     require "config/app.php";
     require "config/database.php";
 
+    if (isset($_SESSION['uid'])){
+        header("location: dashboard.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,25 +25,13 @@
                 <a href="javascript: ;">Login</a>
                 <a href="register.php">Register</a>
             </menu>
-            <form action="" method="post">
+            <form action="login.php" method="post">
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit">Login</button>
             </form>
             <?php 
-            if ($_POST){
-                $email = $_POST['email'];
-                $pass = $_POST['password'];
-
-                //echo var_dump($_POST);
-
-                if (loginUSER($conx, $email, $pass)){
-                    header("location: dashboard.php");
-
-                } else{
-                    header("location: index.php");
-                }
-            }
+            
             
             ?>
         </section>
@@ -60,25 +51,10 @@
                     showConfirmButton: false,
                     timer: 5000
                 })
-                <?php unset($_SESSION['msg']) ?>
+                <?php unset($_SESSION['error']) ?>
             <?php endif ?>
 
-            $('body').on('click', '.delete', function () {
-                $id = $(this).attr('data-id')
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#1f7a8c",
-                    cancelButtonColor: "#1f7a8c",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.replace('delete.php?id=' + $id)
-                    }
-                })
-            })
+           
         })
     </script>
 </body>
