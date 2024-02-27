@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Users</title>
+    <link rel="stylesheet" href="../../css/master.css">
+</head>
+<body>
+    <main>
+        <header class="nav level-1">
+            <a href="../dashboard.html">
+                <img src="/01-UI/images/volver.png" alt="Back">
+            </a>
+            <img src="/01-UI/images/culebra.png" alt="Logo">
+            <a href="" class="mburger">
+                <img src="/01-UI/images/menu.png" alt="Menu Burger">
+            </a>
+        </header>
+        <section class="module">
+            <h1>Module Users</h1>
+            <a class="add" href="add.html">
+                <img src="/01-UI/images/mas.png" width="30px" alt="Add">
+                Add User
+            </a>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><img src="/01-UI/images/usuario.png" alt="User"></td>
+                        <td>User 01</td>
+                        <td>
+                            <a href="show.html" class="show">
+                                <img src="/01-UI/images/lupa.png" alt="Show">
+                            </a>
+                            <a href="edit.html" class="edit">
+                                <img src="/01-UI/images/lapiz.png" alt="Edit">
+                            </a>
+                            <a href="javascript:;" class="delete">
+                                <img src="/01-UI/images/eliminar.png" alt="Delete">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="/01-UI/images/usuario.png" alt="User"></td>
+                        <td>User 02</td>
+                        <td>
+                            <a href="show.html" class="show">
+                                <img src="/01-UI/images/lupa.png" alt="Show">
+                            </a>
+                            <a href="edit.html" class="edit">
+                                <img src="/01-UI/images/lapiz.png" alt="Edit">
+                            </a>
+                            <a href="javascript:;" class="delete">
+                                <img src="/01-UI/images/eliminar.png" alt="Delete">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="/01-UI/images/usuario.png" alt="User"></td>
+                        <td>User 03</td>
+                        <td>
+                            <a href="show.html" class="show">
+                                <img src="/01-UI/images/lupa.png" alt="Show">
+                            </a>
+                            <a href="edit.html" class="edit">
+                                <img src="/01-UI/images/lapiz.png" alt="Edit">
+                            </a>
+                            <a href="javascript:;" class="delete">
+                                <img src="/01-UI/images/eliminar.png" alt="Delete">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="/01-UI/images/usuario.png" alt="User"></td>
+                        <td>User 04</td>
+                        <td>
+                            <a href="show.html" class="show">
+                                <img src="/01-UI/images/lupa.png" alt="Show">
+                            </a>
+                            <a href="edit.html" class="edit">
+                                <img src="/01-UI/images/lapiz.png" alt="Edit">
+                            </a>
+                            <a href="javascript:;" class="delete">
+                                <img src="/01-UI/images/eliminar.png" alt="Delete">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="/01-UI/images/usuario.png" alt="User"></td>
+                        <td>User 05</td>
+                        <td>
+                            <a href="show.html" class="show">
+                                <img src="/01-UI/images/lupa.png" alt="Show">
+                            </a>
+                            <a href="edit.html" class="edit">
+                                <img src="/01-UI/images/lapiz.png" alt="Edit">
+                            </a>
+                            <a href="javascript:;" class="delete">
+                                <img src="/01-UI/images/eliminar.png" alt="Delete">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="../../js/sweetalert2.js"></script>
+    <script src="../../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.delete', function () {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#1f7a8c",
+                    cancelButtonColor: "#1f7a8c",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "The user was deleted.",
+                            icon: "success",
+                            confirmButtonColor: "#1f7a8c"
+                        })
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

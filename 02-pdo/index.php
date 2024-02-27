@@ -1,22 +1,17 @@
 <?php
+    require "config/app.php";
+    require "config/database.php";
 
-require "config/app.php";
-require "config/database.php";
-
-$pets = getAllPets($conx);
-
+    $pets = getAllPets($conx);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Ink+Free&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="js/sweetalert2@11.js"></script>
-    <style>
+    <title>Module Pets</title>
+    <link rel="stylesheet" href="<?php echo URLCSS . "/master.css" ?>">
+</head> <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #B23A48;
@@ -113,63 +108,86 @@ $pets = getAllPets($conx);
         }
 
     </style>
-</head>
-<body>
-    <div class="container">
-        <div class="back-button" onclick="window.history.back();">
-            <i class="fas fa-arrow-left"></i>
-        </div>
-        <div class="menu-icon" onclick="window.location.href = 'dashboard.html';">
-            <i class="fas fa-bars"></i>
-        </div>
-        <h2 class="header-text">PetsApp</h2>
-        <h3 class="module-users-text">Module Pets</h3>
-        <div class="boxes-container">
-            <?php foreach($pets as $pet): ?>
-                <div class="box-container">
-                    <div class="box">
-                        <div class="box-icon">
-                            <img src="<?php echo $pet['photo']; ?>" alt="Pet Photo" style="width: 40px; height: 40px; border-radius: 50%;">
-                        </div>
-                        <div class="box-text"><?php echo $pet['name']; ?></div>
-                        <div class="box-icons">
-                            <div class="box-icon">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                            <div class="box-icon">
-                                <i class="fas fa-edit"></i>
-                            </div>
-                            <div class="box-icon" onclick="showDeleteAlert();">
-                                <i class="fas fa-trash"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<body>
+    <main>
+        <header class="nav level-0">
+            <a href="">
+                <img src="<?php echo URLIMGS . "/volver.png" ?>" alt="Back">
+            </a>
+            <img src="<?php echo URLIMGS . "/culebra.png" ?>" alt="Logo">
+            <a href="" class="mburger">
+                <img src="<?php echo URLIMGS . "/menu.png" ?>" alt="Menu Burger">
+            </a>
+        </header>
+        <section class="module">
+            <h1>Module pets</h1>
+            <a class="add" href="add.php">
+                <img src="<?php echo URLIMGS . "/mas.png" ?>" width="30px" alt="Add">
+                Add Pet
+            </a>
+            <table>
+                <tbody>
+                <?php foreach($pets as $pet): ?>
+                    <tr>
+                        <td>
+                            <img src="<?php echo URLIMGS . "/" . $pet['photo'] ?>" alt="Pet">
+                        </td>
+                        <td>
+                            <span><?php echo $pet['name'] ?></span>
+                            <span><?php echo $pet['kind'] ?></span>
+                        </td>
+                        <td>
+                            <a href="show.php?id=<?=$pet['id']?>" class="show">
+                                <img src="<?php echo URLIMGS . "/lupa.png" ?>" alt="Show">
+                            </a>
+                            <a href="edit.php?id=<?=$pet['id']?>" class="edit">
+                                <img src="<?php echo URLIMGS . "/lapiz.png" ?>" alt="Edit">
+                            </a>
+                            <a href="javascript:;" class="delete" data-id="<?=$pet['id']?>">
+                                <img src="<?php echo URLIMGS . "/eliminar.png" ?>" alt="Delete">
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="<?php echo URLJS . "/sweetalert2.js" ?>"></script>
+    <script src="<?php echo URLJS . "/jquery-3.7.1.min.js" ?>"></script>
     <script>
-        function showDeleteAlert() {
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
-                }
-            });
-        }
+        $(document).ready(function () {
+
+            <?php if(isset($_SESSION['msg'])): ?>
+                Swal.fire({
+                    position: "top-end",
+                    title: "Congratulations!",
+                    text: "<?php echo $_SESSION['msg'] ?>",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 5000
+                })
+                <?php unset($_SESSION['msg']) ?>
+            <?php endif ?>
+
+            $('body').on('click', '.delete', function () {
+                $id = $(this).attr('data-id')
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#1f7a8c",
+                    cancelButtonColor: "#1f7a8c",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.replace('delete.php?id=' + $id)
+                    }
+                })
+            })
+        })
     </script>
 </body>
 </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="../../css/master.css">
+</head>
+<body>
+    <main>
+        <header class="nav level-1">
+            <a href="index.html">
+                <img src="/01-UI/images/volver.png" alt="Back">
+            </a>
+            <img src="/01-UI/images/culebra.png" alt="Logo">
+            <a href="" class="mburger">
+                <img src="/01-UI/images/menu.png" alt="Menu Burger">
+            </a>
+        </header>
+        <section class="edit">
+            <h1>Edit User</h1>
+            <form action="index.html" method="post" enctype="multipart/form-data">
+                <img src="/01-UI/images/computacion-en-la-nube.png" id="upload" width="240px" alt="Upload">
+                <input type="file" name="photo" id="photo" accept="image/*" required>
+                <input type="text" name="name" placeholder="Full Name" value="Jhon Doe" required>
+                <input type="number" name="phone" placeholder="Phone Number" value="312345345" required>
+                <input type="email" name="email" placeholder="Email" value="jhond@gmail.com" required>
+                <button type="submit">Update</button>
+            </form>
+        </section>
+    </main>
+    <script src="../../js/sweetalert2.js"></script>
+    <script src="../../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#upload').click(function (e) { 
+                e.preventDefault()
+                $('#photo').click()
+            })
+
+            $('#photo').change(function (e) { 
+                e.preventDefault();
+                let reader = new FileReader()
+                reader.onload = function(event) {
+                    $('#upload').attr('src', event.target.result)
+                }
+                reader.readAsDataURL(this.files[0])
+            })
+        })
+    </script>
+</body>
+</html>

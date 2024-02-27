@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Pets</title>
+    <link rel="stylesheet" href="../../css/master.css">
+</head>
+<body>
+    <main>
+        <header class="nav level-1">
+            <a href="../dashboard.html">
+                <img src="/01-UI/images/volver.png" alt="Back">
+            </a>
+            <img src="/01-UI/images/culebra.png" alt="Logo">
+            <a href="../dashboard.html" class="mburger">
+                <img src="/01-UI/images/menu.png" alt="Menu Burger">
+            </a>
+        </header>
+        <section class="module">
+            <h1>Module pets</h1>
+            <a class="add" href="add.html">
+                <img src="/01-UI/images/mas.png" width="30px" alt="Add">
+                Add Pet
+            </a>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><img src="/01-UI/images/mascotas.png" alt="Pet"></td>
+                        <td>
+                            <span>Pet 01</span>
+                            <span>Dog</span>
+                        </td>
+                        <td>
+                            <a href="show.html" class="show">
+                                <img src="/01-UI/images/lupa.png" alt="Show">
+                            </a>
+                            <a href="edit.html" class="edit">
+                                <img src="/01-UI/images/lapiz.png" alt="Edit">
+                            </a>
+                            <a href="javascript:;" class="delete">
+                                <img src="/01-UI/images/eliminar.png" alt="Delete">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="/01-UI/images/mascotas.png" alt="Pet"></td>
+                        <td>
+                            <span>Pet 02</span>
+                            <span>Cat</span>
+                        </td>
+                        <td>
+                            <a href="show.html" class="show">
+                                <img src="/01-UI/images/lupa.png" alt="Show">
+                            </a>
+                            <a href="edit.html" class="edit">
+                                <img src="/01-UI/images/lapiz.png" alt="Edit">
+                            </a>
+                            <a href="javascript:;" class="delete">
+                                <img src="/01-UI/images/eliminar.png" alt="Delete">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="/01-UI/images/mascotas.png" alt="Pet"></td>
+                        <td>
+                            <span>Pet 03</span>
+                            <span>Dog</span>
+                        </td>
+                        <td>
+                            <a href="show.html" class="show">
+                                <img src="/01-UI/images/lupa.png" alt="Show">
+                            </a>
+                            <a href="edit.html" class="edit">
+                                <img src="/01-UI/images/lapiz.png" alt="Edit">
+                            </a>
+                            <a href="javascript:;" class="delete">
+                                <img src="/01-UI/images/eliminar.png" alt="Delete">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="/01-UI/images/mascotas.png" alt="Pet"></td>
+                        <td>
+                            <span>Pet 04</span>
+                            <span>Cat</span>
+                        </td>
+                        <td>
+                            <a href="show.html" class="show">
+                                <img src="/01-UI/images/lupa.png" alt="Show">
+                            </a>
+                            <a href="edit.html" class="edit">
+                                <img src="/01-UI/images/lapiz.png" alt="Edit">
+                            </a>
+                            <a href="javascript:;" class="delete">
+                                <img src="/01-UI/images/eliminar.png" alt="Delete">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="/01-UI/images/mascotas.png" alt="Pet"></td>
+                        <td>
+                            <span>Pet 05</span>
+                            <span>Dog</span>
+                        </td>
+                        <td>
+                            <a href="show.html" class="show">
+                                <img src="/01-UI/images/lupa.png" alt="Show">
+                            </a>
+                            <a href="edit.html" class="edit">
+                                <img src="/01-UI/images/lapiz.png" alt="Edit">
+                            </a>
+                            <a href="javascript:;" class="delete">
+                                <img src="/01-UI/images/eliminar.png" alt="Delete">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="../../js/sweetalert2.js"></script>
+    <script src="../../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.delete', function () {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#1f7a8c",
+                    cancelButtonColor: "#1f7a8c",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "The pet was deleted.",
+                            icon: "success",
+                            confirmButtonColor: "#1f7a8c"
+                        })
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>
