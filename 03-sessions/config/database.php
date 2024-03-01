@@ -31,6 +31,7 @@
                 if (password_verify($pass, $user['password'])) {
                     //echo "usted esta registrado";
                     $_SESSION['uid'] = $user['id'];
+                    $_SESSION['urole'] = $user['role'];
                     return true;
                 }
                 else{
@@ -49,8 +50,38 @@
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
+
+        //usuer ADD
+    }
+    function getUser($conx, $id) {
+        try {
+            $sql = "SELECT * FROM users WHERE id = :id";
+            $stm = $conx->prepare($sql);
+            $stm->execute(['id' => $id]);
+            return $stm->fetch();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
 
+    
+    function addUser($conx, $data) {
+        try {
+            $sql = "INSERT INTO users (document, fullname, photo, phone, email, password)
+                    VALUES (:document, :fullname, :photo, :phone, :email, :password)"; 
+            $smt = $conx->prepare($sql); 
+            
+            if ($smt->execute($data)) {
+                $_SESSION['msg'] = 'The ' . $data['fullname'] . ' user was registered succed.' ;
+                return true;
+            } else {
+                return false;
+            } 
+
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
     
 
     
