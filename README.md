@@ -10,5 +10,6 @@
 |02. Prototype | Demo |
 |03. Style Guide | Colors & Logos |
 |04. Mockup | Final Design |
-|05. Layout | (html & css)) |
+|05. Layout | (html & css) |
 
+cd
